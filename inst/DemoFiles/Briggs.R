@@ -104,6 +104,8 @@ modelOutput=popModel(
   solverOptions=list(DDEsolver='PBS',tol=1e-7,hbsize=1e4,dt=0.01),
   speciesNames=c('Host','Egg Parasitoid','Larval Parasitoid'),
   stageNames=list(c('eggs','larvae','adults'),c('eggs','adults'),c('eggs','adults')),
+  saveFig=TRUE,
+  figType='png'
   )
 
 

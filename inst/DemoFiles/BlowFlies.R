@@ -47,7 +47,9 @@ modelOutput = popModel(
   rateFunctions=blowFliesFunctions,
   solverOptions=solver.options,
   stageNames=list(c('eggs','larvae','pupae','juveniles','adults')),
-  speciesNames=c('blowflies')
+  speciesNames=c('blowflies'),
+  saveFig=TRUE,
+  figType='png'
   )
 
 

@@ -27,7 +27,7 @@ popModel(numSpecies, numStages, numStrains = rep(1, numSpecies), timeVec,
 
 \item{timeDependDuration}{A vector specifying TRUE/FALSE for each species. If a species has any time dependent stage durations the entry is TRUE for that species. The default is FALSE for each species.}
 
-\item{ICs}{A list containing n vectors where n is the number of species. Each vector contains the value of each stage at t<=0. E.g. for 2 species with 1 and 2 stages respectively ICs could have the form: list(a,c(0,b)). Entries must be zero in all but the last stage unless the species has only one stage.}
+\item{ICs}{is a list of matrices containing the initial conditions for every stage and strain of each species. These must be zero for all stages apart from the reproductive stage (usually the last stage). Each species has a matrix with the number of columns equal to the number of strains in that species and the number of rows equal to the number of stages in that species. E.g. for 2 species, the first with 2 strains and 3 stages, the second with 1 strain and 1 stage, then for zero starting conditions: ICs=list(matrix(0,ncol=2,nrow=3),matrix(0,ncol=1,nrow=1)). Due to the restrictions on initial conditions, it is recommended that more complicated initial conditions are defined through immigration rates in immigrationFunc}
 
 \item{solverOptions}{Options for the DDE solver. A list containing 'DDEsolver' (can be 'deSolve' or 'PBS'), 'tol' (max error tolerance for DDE solver), 'hbsize' (history buffer size), 'method' (method for DDE solver), 'atol' (absolute tolerance (deSolve only)) and 'dt' (maximum initial timestep (PBS only)). Default is solverOptions=list(DDEsolver='PBS',tol=1e-7,hbsize=1e3,method='lsoda',atol=1e-7,dt=0.1)}
 

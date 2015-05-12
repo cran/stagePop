@@ -22,10 +22,14 @@ genericPlot=function(output,numSpecies,numStages,speciesNames,stageNames,saveFig
   #set size of labels
   cexlabsize=2.0
   cexaxissize=2.0
-  cexlegendsize=2.0
+  cexlegendsize=1.75
   cexmainsize=1.75
   
-  if (numSpecies>1 & max(numStages)>1){wlen=5*numSpecies;hlen=5}else{wlen=7;hlen=7}
+  if (numSpecies>1 & max(numStages)>1){
+      wlen=5*numSpecies;hlen=5
+      cexlegendsize=1.25
+  }else{
+      wlen=7;hlen=7}
 
   dev.new(bg="white",horizontal=FALSE,onefile = FALSE, paper = 'special',width=wlen,height=hlen)
 
