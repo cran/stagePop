@@ -50,7 +50,6 @@ modelOutput=popModel(
 dev.new()
 par(mar=c(5,5,2,2))
 plot(modelOutput[,2],modelOutput[,3],type='l',xlab='prey',ylab='predator',cex.lab=2,cex.axis=1.5)
-#dev.copy2eps(file='predprey1C.eps')
 
 x=0.3; y=1
 C=growthRatePrey*log(y)-deathRatePrey*y-growthRatePred*x+deathRatePred*log(x)

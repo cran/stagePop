@@ -91,12 +91,10 @@ print(modelOutput[length(modelOutput[,1]),c('dur.Damselfly.larvae','Food.one','D
 dev.new()
 par(mar=c(5,5,1,1))
 plot(modelOutput[,'time'],modelOutput[,'dur.Damselfly.larvae'],type='l',xlab='time',ylab='Larval stage duration',cex.axis=1.5,cex.lab=2.5,lwd=2)
-#dev.copy2eps(file='Foodtau.eps')
 
 #plot rate of uptake of food 
 foodUptake=epsilon*fmax*modelOutput[,'Food.one']/(K+modelOutput[,'Food.one'])
 dev.new()
 par(mar=c(5,5,1,1))
 plot(modelOutput[,'time'],foodUptake,type='l',xlab='time',ylab='Food uptake rate',cex.axis=1.5,cex.lab=2.5,lwd=2)
-#dev.copy2eps(file='FoodUptake.eps')
 

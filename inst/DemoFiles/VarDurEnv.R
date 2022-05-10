@@ -66,7 +66,6 @@ par(mar=c(5,5,5,5))
 T=seq(0,40,0.5); Tau=T*0
 for (i in seq(1,length(T))){Tau[i]=tauFunc(T[i])}
 plot(T,Tau,type='l',xlab='Temperature (oC)',ylab='Juvenile stage Duration (days)',cex.axis=1.75,cex.lab=2)
-#dev.copy2eps(file='EnvTempTau.eps')
 
 dev.new()
 par(mar=c(5,5,5,5))
@@ -74,7 +73,6 @@ time=modelOutput[,'time']
 temps=tempFunc(time)
 plot(c(0,2*365),c(0,max(temps)),type="n",xlab='Time',ylab='Temperature',cex.axis=1.75,cex.lab=2)
 lines(time,temps,col=1,lty=1,lwd=2)
-#dev.copy2eps(file='EnvTemp.eps')
 
 
 dev.new()
@@ -86,6 +84,5 @@ plot(c(0,2*365),c(minDur*0.9,0.9*maxDur),type="n",xlab='Time',ylab='Juvenile Sta
 lines(time,tau,col=1,lty=1,lwd=2)
 lines(time,tempsTau,col=2,lty=1,lwd=2)
 legend('topleft',c('from StagePop','if T(t)=Tc'),lty=1,col=seq(1,2),lwd=2,cex=1.75)
-#dev.copy2eps(file='EnvTau.eps')
 
 

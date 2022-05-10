@@ -64,7 +64,7 @@ for (deltaT in c(0,3)){
     rateFunctions=ccFunctions,
     stageNames=list(c('juveniles','adults')),
     speciesNames=c('Nematodes'),
-    saveFig=TRUE,
+    saveFig=FALSE,
     figType='png'
     )
 
@@ -79,8 +79,7 @@ par(mar=c(5,5,2,2))
 T=seq(0,40,0.5); g=T*0
 for (i in seq(1,length(T))){g[i]=gFunc(T[i])}
 plot(T,g,type='l',xlab='Temperature (oC)',ylab='Juvenile development rate (/d)',cex.axis=1.5,cex.lab=1.5)
-dev.copy2eps(file='EnvTempDev.eps')
-#dev.print(png,'EnvTempDev.png',res=100,width=5,height=5, units='in')
+
 
 dev.new(bg='white')
 par(mar=c(5,5,2,2))
@@ -91,8 +90,7 @@ lines(time,temps,col=1,lty=1,lwd=2)
 temps=tempFunc(time,3)
 lines(time,temps,col=2,lty=1,lwd=2)
 legend('top',c('dT=0','dT=3'),lty=1,col=seq(1,2),lwd=2,cex=1.25,bty='n')
-dev.copy2eps(file='EnvTemp.eps')
-#dev.print(png,'EnvTemp.png',res=100,width=5,height=5, units='in')
+
 
 
 dev.new(bg='white')
@@ -101,8 +99,6 @@ plot(c(0,2*365),c(60,200),type="n",xlab='Time',ylab='Juvenile Stage Duration (d)
 lines(time,Taus[,1],col=1,lty=1,lwd=2)
 lines(time,Taus[,2],col=2,lty=1,lwd=2)
 legend('top',c('dT=0','dT=3'),lty=1,col=seq(1,2),lwd=2,cex=1.25,bty='n')
-dev.copy2eps(file='EnvTau.eps')
-#dev.print(png,'EnvTau.png',res=100,width=5,height=5, units='in')
 
 dev.new(bg='white')
 par(mar=c(5,5,2,2))
@@ -110,8 +106,6 @@ plot(c(0,2*365),c(0,100),type="n",xlab='Time',ylab='Adult Density',cex.axis=1.75
 lines(time,Adults[,1],col=1,lty=1,lwd=2)
 lines(time,Adults[,2],col=2,lty=1,lwd=2)
 legend('top',c('dT=0','dT=3'),lty=1,col=seq(1,2),lwd=2,cex=1.25,bty='n')
-dev.copy2eps(file='EnvAdults.eps')
-#dev.print(png,'EnvTau.png',res=100,width=5,height=5, units='in')
 
 
 

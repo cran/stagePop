@@ -31,54 +31,54 @@ genericPlot=function(output,numSpecies,numStages,speciesNames,stageNames,saveFig
   }else{
       wlen=7;hlen=7}
 
-  dev.new(bg="white",horizontal=FALSE,onefile = FALSE, paper = 'special',width=wlen,height=hlen)
+  grDevices::dev.new(bg="white",horizontal=FALSE,onefile = FALSE, paper = 'special',width=wlen,height=hlen)
 
   time=output[,1]
   ct=2
 
-  par(mar=c(5,5,2,2))
+  graphics::par(mar=c(5,5,2,2))
   
   if (max(numStages)==1){  #no stage structure in any species
-    cols=rainbow(numSpecies)
+    cols=grDevices::rainbow(numSpecies)
     data=output[,ct:(ct+numSpecies-1)]
     ct=numSpecies+ct
-    plot(c(min(time),max(time)),c(min(data),1.1*max(data)),type='n',xlab='time',ylab='density',cex.lab=cexlabsize,cex.axis=cexaxissize,cex.main=cexmainsize)
+    graphics::plot(c(min(time),max(time)),c(min(data),1.1*max(data)),type='n',xlab='time',ylab='density',cex.lab=cexlabsize,cex.axis=cexaxissize,cex.main=cexmainsize)
     if (numSpecies>1){
       for (j in seq(1,numSpecies)){
-        lines(time,data[,j],col=cols[j],lwd=2)
-        legend('topright',speciesNames[1:numSpecies],lty=1,col=cols,cex=cexlegendsize,lwd=2,bty='n')}
-    }else{lines(time,data,col=cols)}
+        graphics::lines(time,data[,j],col=cols[j],lwd=2)
+        graphics::legend('topright',speciesNames[1:numSpecies],lty=1,col=cols,cex=cexlegendsize,lwd=2,bty='n')}
+    }else{graphics::lines(time,data,col=cols)}
     
 
   }else{
 
     if (numSpecies==1){     #only one species but it has stage structure
-      cols=rainbow(numStages)
+      cols=grDevices::rainbow(numStages)
       data=output[,ct:(ct+numStages-1)]
       ct=numStages+ct
-      plot(c(min(time),max(time)),c(min(data),1.1*max(data)),type='n',xlab='time',ylab='density',cex.lab=cexlabsize,cex.axis=cexaxissize,cex.main=cexmainsize)
+      graphics::plot(c(min(time),max(time)),c(min(data),1.1*max(data)),type='n',xlab='time',ylab='density',cex.lab=cexlabsize,cex.axis=cexaxissize,cex.main=cexmainsize)
       if (numStages>1){
         for (j in seq(1,numStages)){
-          lines(time,data[,j],col=cols[j],lwd=2)
-            legend('topright',stageNames[[1]],lty=1,col=cols,cex=cexlegendsize,lwd=2,bty='n')
+          graphics::lines(time,data[,j],col=cols[j],lwd=2)
+            graphics::legend('topright',stageNames[[1]],lty=1,col=cols,cex=cexlegendsize,lwd=2,bty='n')
         }
-      }else{lines(time,data,col=cols)}
+      }else{graphics::lines(time,data,col=cols)}
       
     }else{ #multiple species with stage structure
     
-      par(mfrow=c(1,numSpecies))
+      graphics::par(mfrow=c(1,numSpecies))
       ct=2
       for (i in seq(1,numSpecies)){
-        cols=rainbow(numStages[i])
+        cols=grDevices::rainbow(numStages[i])
         data=output[,ct:(ct+numStages[i]-1)]
         if (is.finite(max(data))){
           titleText=speciesNames[i]
-          plot(c(min(time),max(time)),c(min(data),1.1*max(data)),type='n',main=titleText,xlab='time',ylab='density',cex.lab=cexlabsize,cex.axis=cexaxissize,cex.main=cexmainsize)
+          graphics::plot(c(min(time),max(time)),c(min(data),1.1*max(data)),type='n',main=titleText,xlab='time',ylab='density',cex.lab=cexlabsize,cex.axis=cexaxissize,cex.main=cexmainsize)
           if (numStages[i]>1){
             for (j in seq(1,numStages[i])){
-              lines(time,data[,j],col=cols[j],lwd=2)}
-            legend('topright',stageNames[[i]],lty=1,col=cols,cex=cexlegendsize,lwd=2,bty='n')
-          }else{lines(time,data,col=cols,lwd=2)}
+              graphics::lines(time,data[,j],col=cols[j],lwd=2)}
+            graphics::legend('topright',stageNames[[i]],lty=1,col=cols,cex=cexlegendsize,lwd=2,bty='n')
+          }else{graphics::lines(time,data,col=cols,lwd=2)}
           ct=numStages[i]+ct
         }
       }
@@ -86,10 +86,10 @@ genericPlot=function(output,numSpecies,numStages,speciesNames,stageNames,saveFig
   }
 
   if (saveFig){
-    if (figType=='pdf'){dev.copy2pdf(file=paste(figName,'.pdf',sep=""))}
-    if (figType=='eps'){dev.copy2eps(file=paste(figName,'.eps',sep=""))}
-    if (figType=='png'){dev.print(png,filename=paste(figName,'.png',sep=""),res=100,width=wlen,height=hlen,units='in')}
-    if (figType=='tiff'){dev.print(tiff,filename=paste(figName,'.tiff',sep=""),res=100,width=wlen,height=hlen,units='in')}
+#    if (figType=='pdf'){grDevices::dev.copy2pdf(file=paste(figName,'.pdf',sep=""))}
+    if (figType=='eps'){grDevices::dev.copy2eps(file=paste(figName,'.eps',sep=""))}
+    if (figType=='png'){grDevices::dev.print(grDevices::png,filename=paste(figName,'.png',sep=""),res=100,width=wlen,height=hlen,units='in')}
+    if (figType=='tiff'){grDevices::dev.print(grDevices::tiff,filename=paste(figName,'.tiff',sep=""),res=100,width=wlen,height=hlen,units='in')}
     #dev.off()
   }
 

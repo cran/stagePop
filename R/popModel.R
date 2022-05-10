@@ -30,11 +30,10 @@
 #' @param sumOverStrains If any of the species contain multiple strains then if this is TRUE the output is given as the sum over all the strains in the species. If this is FALSE then the time series for each strain will be in the output. Default is TRUE.
 #' @param plotStrainsFig If any of the species contain multiple strains then if this is TRUE these will be plotted. Default is TRUE
 #' @param saveStrainsFig If any of the species contain multiple strains then if this is TRUE the figures for the strains will be saveed
-#' @param strainsFigType If any of the species contain multiple strains and if saveStrainsFig=TRUE then this is used to choose the type of file the figure is saved as (choose from 'eps', 'pdf', 'png' and 'tiff'). Default is 'eps'.
+#' @param strainsFigType If any of the species contain multiple strains and if saveStrainsFig=TRUE then this is used to choose the type of file the figure is saved as (choose from 'eps', 'png' and 'tiff'). Default is 'eps'.
 #' @param strainsFigName If any of the species contain multiple strains and if saveStrainsFig=TRUE then this is used to choose the name of file the figure is saved as. Default is created by paste('strainFig',SpeciesName[i]).
 
 #' @return The model output is a matrix where rows are points in time and the columns are the state variables. These are named according to the species names and stage names supplied in inputs; the prefixes 'prob', 'dur' and 'dot' refer to the probability of survival through the stage, the duration of the stage and the rate of change of the variable. 'prob' type variables only appear if the per capita death (or emigration) rate is variable in time and 'dur' only appears if the stage duration is variable in time.
-
 #' @examples
 #' rateFuncs=list(
 #'   reproFunc=function(x,time,species,strain){
@@ -63,11 +62,12 @@
 #'  rateFunctions=rateFuncs,
 #'  solverOptions=list(DDEsolver='PBS',tol=1e-4,hbsize=1e4,dt=0.01),
 #'  stageNames=list(c('eggs','larvae','adults')),
-#'  speciesNames=c('flies')
+#'  speciesNames=c('flies'),
+#'  plotFigs=FALSE #change this to TRUE to see graphical output
 #'  )
 
-#' @export
 
+#' @export
 popModel=function(
   numSpecies,   
   numStages,
@@ -116,11 +116,6 @@ popModel=function(
 
   if (!rateFuncCheck(ICsNamed,numSpecies,numStages,numStrains,timeDependDuration,rateFunctions,speciesNames,stageNames,modelStartTime)) stop('The model can not run until deathFunc, reproFunc, immigrationFunc, emigrationFunc, durationFunc (and develFunc if stage durations are time dependent) are correctly defined.')
  
-#  tryCatch(force(figName),finally=print('Error: figName must be a string'))
-#  tryCatch(force(figType),finally=print('Error: figType must be a string'))
-#  tryCatch(force(strainsFigName),finally=print('Error: strainFigName must be a string'))
-#  tryCatch(force(strainsFigType),finally=print('Error: strainFigType must be a string'))
-  
   
   #---------------------------------------------------------------
 
